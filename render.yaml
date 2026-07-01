@@ -21,9 +21,12 @@ services:
 
   - type: static
     name: portfolio-frontend
-    plan: free
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
       - key: VITE_API_URL
         fromService:
