@@ -1,7 +1,6 @@
 databases:
   - name: portfolio-db
     databaseName: portfolio
-    user: postgres
     plan: free
 
 services:
@@ -34,4 +33,4 @@ services:
         fromService:
           type: web
           name: portfolio-backend
-          property: url
+          property: host

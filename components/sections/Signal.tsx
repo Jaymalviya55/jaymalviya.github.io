@@ -13,9 +13,11 @@ export const Signal: React.FC = () => {
         e.preventDefault();
         setStatus('submitting');
         try {
-            const apiUrl = import.meta.env.VITE_API_URL 
-                ? `${import.meta.env.VITE_API_URL}/api/contact`
-                : `http://${window.location.hostname}:3000/api/contact`;
+            let apiUrl = `http://${window.location.hostname}:3000/api/contact`;
+            if (import.meta.env.VITE_API_URL) {
+                const host = import.meta.env.VITE_API_URL;
+                apiUrl = host.startsWith('http') ? `${host}/api/contact` : `https://${host}/api/contact`;
+            }
                 
             const res = await fetch(apiUrl, {
                 method: 'POST',
